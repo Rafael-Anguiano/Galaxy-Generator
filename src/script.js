@@ -107,7 +107,7 @@ gui
     })
 gui
     .add(parameters, 'size', 0.001, 0.05, 0.001)
-    .name('Size')
+    .name('Particle Size')
     .onFinishChange(() => {
         generateGalaxy()
     })

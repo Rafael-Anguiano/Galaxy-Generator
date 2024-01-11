@@ -23,7 +23,7 @@ parameters.size = 0.02
 parameters.radius = 5
 parameters.branches = 7
 parameters.spin = 1
-parameters.randomness = 5
+parameters.randomness = 0.2
 parameters.randomnessPower = 3.031
 parameters.insideColor = '#ff6030'
 parameters.outsideColor = '#1b3984'
@@ -56,9 +56,9 @@ const generateGalaxy = () => {
         const radius = Math.random() * parameters.radius
         const spinAngle = radius * parameters.spin
         const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI*2
-        const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
-        const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
-        const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
+        const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius
+        const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius
+        const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius
         positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX
         positions[i3 + 1] = 0 + randomY
         positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ
@@ -101,12 +101,12 @@ generateGalaxy()
 
 gui
     .add(parameters, 'count', 100, 100000, 1)
-    .name('Count')
+    .name('# of Particles')
     .onFinishChange(() => {
         generateGalaxy()
     })
 gui
-    .add(parameters, 'size', 0.001, 0.1, 0.001)
+    .add(parameters, 'size', 0.001, 0.05, 0.001)
     .name('Size')
     .onFinishChange(() => {
         generateGalaxy()
@@ -125,19 +125,19 @@ gui
     })
 gui
     .add(parameters, 'spin', - 5, 5, 0.001)
-    .name('Spin')
+    .name('Spin Force')
     .onFinishChange(() => {
         generateGalaxy()
     })
 gui
-    .add(parameters, 'randomness', 0, 5, 0.001)
+    .add(parameters, 'randomness', 0, 2, 0.001)
     .name('Randomness')
     .onFinishChange(() => {
         generateGalaxy()
     })
 gui
     .add(parameters, 'randomnessPower', 1, 10, 0.001)
-    .name('Randomness Power')
+    .name('Definition')
     .onFinishChange(() => {
         generateGalaxy()
     })

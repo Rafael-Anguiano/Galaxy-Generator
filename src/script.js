@@ -112,7 +112,7 @@ gui
         generateGalaxy()
     })
 gui
-    .add(parameters, 'radius', 0, 20, 0.1)
+    .add(parameters, 'radius', 0.01, 20, 0.1)
     .name('Radius')
     .onFinishChange(() => {
         generateGalaxy()
@@ -207,7 +207,7 @@ window.addEventListener('dblclick', () => {
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 120)
 camera.position.x = 3
 camera.position.y = 3
 camera.position.z = 3
@@ -235,7 +235,7 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
-    points.rotation.y = elapsedTime / 3 * (parameters.spin > 0 ? 1 : -1)
+    points.rotation.y = elapsedTime * 0.2 * (parameters.spin > 0 ? 1 : -1)
 
     // Update controls
     controls.update()

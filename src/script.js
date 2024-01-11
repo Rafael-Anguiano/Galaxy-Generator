@@ -19,7 +19,7 @@ const scene = new THREE.Scene()
  */
 const parameters = {}
 parameters.count = 100000
-parameters.size = 0.003
+parameters.size = 0.02
 parameters.radius = 5
 parameters.branches = 7
 parameters.spin = 1
